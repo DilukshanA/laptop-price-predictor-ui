@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Laptop Price Prediction</h1>
+    <form id="predictForm" method="POST" action="/predict">
+        <label for="brand">Brand</label>
+        <select name="brand" id="brand" required>
+            <option value="1">ASUS</option>
+            <option value="2">Avita</option>
+            <option value="3">DELL</option>
+            <option value="4">HP</option>
+            <option value="5">Lenovo</option>
+            <option value="6">MSI</option>
+            <option value="7">Acer</option>
+        </select>
+
+        <label for="processor_brand">Processor Brand</label>
+        <select name="processor_brand" id="processor_brand" required>
+            <option value="1">Intel</option>
+            <option value="2">M1</option>
+        </select>
+
+        <label for="processor_name">Processor Name</label>
+        <select name="processor_name" id="processor_name" required>
+            <option value="1">Core i3</option>
+            <option value="2">Core i5</option>
+            <option value="3">Core i7</option>
+            <option value="4">Core i9</option>
+            <option value="5">M1</option>
+            <option value="6">Pentium Quad</option>
+            <option value="7">Ryzen 3</option>
+            <option value="8">Ryzen 5</option>
+            <option value="9">Ryzen 7</option>
+            <option value="10">Ryzen 9</option>
+        </select>
+
+        <label for="ram_type">RAM Type</label>
+        <select name="ram_type" id="ram_type" required>
+            <option value="1">DDR4</option>
+            <option value="2">DDR5</option>
+            <option value="3">LPDDR3</option>
+            <option value="4">LPDDR4</option>
+            <option value="5">LPDDR4X</option>
+        </select>
+
+        <label for="os">Operating System</label>
+        <select name="os" id="os" required>
+            <option value="1">Mac</option>
+            <option value="2">Windows</option>
+        </select>
+
+        <label for="weight">Weight Category</label>
+        <select name="weight" id="weight" required>
+            <option value="1">Gaming</option>
+            <option value="2">Thin & Light</option>
+        </select>
+
+        <label for="touchscreen">Touchscreen</label>
+        <select name="touchscreen" id="touchscreen" required>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+
+        <label for="msoffice">MS Office</label>
+        <select name="msoffice" id="msoffice" required>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+
+        <label for="ram">RAM (GB)</label>
+        <input type="number" name="ram" id="ram" required>
+
+        <label for="ssd">SSD (GB)</label>
+        <input type="number" name="ssd" id="ssd" required>
+
+        <label for="hdd">HDD (GB)</label>
+        <input type="number" name="hdd" id="hdd" required>
+
+        <label for="graphic_card">Graphic Card Memory (GB)</label>
+        <input type="number" name="graphic_card" id="graphic_card" required>
+
+        <label for="warranty">Warranty (Years)</label>
+        <input type="number" name="warranty" id="warranty" required>
+
+        <button type="submit">Predict Price</button>
+    </form>
+
+    <div id="result">
+        <h2>Predicted Price</h2>
+    <!--<p>Price in INR: <span id="price_in_inr"></span></p>-->
+        <p>Price in LKR: <span id="price_in_lkr"></span></p>
+        <p>Price in USD: <span id="price_in_usd"></span></p>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById("predictForm");
+
+    form.onsubmit = async function(event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+
+        const formData = new FormData(form);
+
+        const response = await fetch('/predict', {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await response.json();
+
+        // Update the price results
+        //document.getElementById("price_in_inr").textContent = data.price_in_inr;
+        document.getElementById("price_in_lkr").textContent = data.price_in_lkr;
+        document.getElementById("price_in_usd").textContent = data.price_in_usd;
+
+        document.getElementById("result").style.display = "block";
+
+        // Reset form fields
+        form.reset();
+    };
+</script>
+
+</body>
+</html>

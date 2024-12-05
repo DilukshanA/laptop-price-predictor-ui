@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+    color: #333;
+}
+
+select, input {
+    width: 100%; /* Full width for all input and select fields */
+    padding: 10px;
+    margin: 5px 0 15px 0; /* Spacing below the fields */
+    border: 1px solid #ccc;
+    border-radius: 4px; /* Rounded edges for better aesthetics */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+    font-size: 14px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%; /* Button width matches input and select fields */
+    border-radius: 4px; /* Rounded edges for buttons */
+    font-size: 16px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#result {
+    margin-top: 20px;
+    display: none;
+    padding: 10px;
+    background-color: #e9f5e9;
+    border: 1px solid #4CAF50;
+    border-radius: 4px;
+    text-align: center;
+}
